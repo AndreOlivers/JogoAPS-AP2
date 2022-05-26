@@ -3,6 +3,7 @@ package entidade;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,25 +16,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-
-/*
- * @NamedQueries({
- * 
- * @NamedQuery(name = "Jogo.numerosPares", query =
- * "select case when j.valor1 % 2 = 0 then j.valor1 end as j.valor1," +
- * "case when j.valor2 % 2 = 0 then j.valor2 end as j.valor2," +
- * "case when j.valor3 % 2 = 0 then j.valor3 end asj. valor3," +
- * "case when j.valor4 % 2 = 0 then j.valor4 end as j.valor4," +
- * "case when j.valor5 % 2 = 0 then j.valor5 end as j.valor5, " +
- * "case when j.valor6 % 2 = 0 then j.valor6 end as j.valor6," +
- * "case when j.valor7 % 2 = 0 then j.valor7 end as j.valor7," +
- * "case when j.valor8 % 2 = 0 then j.valor8 end as j.valor8," +
- * "case when j.valor9 % 2 = 0 then j.valor9 end as j.valor9," +
- * "case when j.valor10 % 2 = 0 then j.valor10 end as j.valor10 " +
- * "From Jogo Where id = j") })
- * 
- * @Table(name = "Jogo")
- */
 public class Jogo {
 
 	Random rd = new Random();
@@ -66,7 +48,8 @@ public class Jogo {
 	private Integer v9 = rd.nextInt(30);
 	@Column(name = "Valor10")
 	private Integer v10 = rd.nextInt(30);
-
+	
+	
 	public Integer getId() {
 		return id;
 	}
@@ -166,8 +149,11 @@ public class Jogo {
 	public Integer getV10() {
 		return v10;
 	}
-
 	public void setV10(Integer v10) {
 		this.v10 = v10;
+	}
+
+	public List<Integer> getNumerosPares() {
+		return List.of(v1, v2, v3, v4, v5, v6, v7, v8, v9, v10).stream().filter(valor -> valor % 2 == 0).toList();
 	}
 }

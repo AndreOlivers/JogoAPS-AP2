@@ -14,8 +14,8 @@ public class JogoBean {
 
 	private Jogo jogo = new Jogo();
 	private List<Jogo> lista; 
-	private List<Jogo> numerosAleatorios;
 
+	
 	public String salvar() { 
 		try {
 			JogoDao.salvar(jogo);
@@ -60,12 +60,9 @@ public class JogoBean {
 
 	public void buscarValoresPares() {
 		try {
-			List<Jogo> numerosPares = JogoDao.buscarValoresPares();
-			for(Jogo j : numerosPares) {
-				j.getClass();
-			}
+			List<Integer> numerosPares = JogoDao.buscarValoresPares(jogo);
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",
-					"Os números pares são " + numerosPares));
+					"Os números pares do jogo " + jogo.getDescricao() + " são: " + numerosPares));
 
 		} catch (Exception e) {
 
@@ -91,17 +88,6 @@ public class JogoBean {
 
 	public void setLista(List<Jogo> lista) {
 		this.lista = lista;
-	}
-
-	public List<Jogo> getNumerosAleatorios() {
-		if (numerosAleatorios == null) {
-			numerosAleatorios = JogoDao.buscarValoresPares();
-		}
-		return numerosAleatorios;
-	}
-
-	public void setNumerosAleatorios(List<Jogo> numerosAleatorios) {
-		this.numerosAleatorios = numerosAleatorios;
 	}
 
 }

@@ -1,15 +1,13 @@
 package dao;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-
 import entidade.Jogo;
 import util.JogoJPAUtil;
 
+//Item c)
 public class JogoDao {
 
 	public static void salvar(Jogo jogo) {
@@ -44,7 +42,6 @@ public class JogoDao {
 		em.close();
 		return lista;
 	}
-
 	
 	public static List<Integer> buscarValoresPares(Jogo j){
 		EntityManager em = JogoJPAUtil.criarEntityManager();

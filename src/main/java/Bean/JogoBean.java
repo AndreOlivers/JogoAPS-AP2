@@ -1,8 +1,6 @@
 package Bean;
 
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -11,7 +9,7 @@ import entidade.Jogo;
 
 @ManagedBean
 public class JogoBean {
-
+	/* item j) */
 	private Jogo jogo = new Jogo();
 	private List<Jogo> lista; 
 
@@ -24,7 +22,7 @@ public class JogoBean {
 			jogo = new Jogo();
 		} catch (Exception e) {
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Erro ao salvar o Jogo"));
+					new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error:", "Erro ao salvar o Jogo"));
 		}
 		return "lista";
 	}
@@ -33,7 +31,7 @@ public class JogoBean {
 		try {
 			JogoDao.editar(jogo);
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Jogo editado com sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",""+ jogo.getDescricao() + " foi editado com sucesso"));
 
 		} catch (Exception e) {
 
@@ -48,7 +46,7 @@ public class JogoBean {
 			JogoDao.excluir(jogo);
 			lista.remove(jogo);
 			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Jogo excluido com sucesso"));
+					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso",""+ jogo.getDescricao() + "foi excluido com sucesso"));
 
 		} catch (Exception e) {
 
